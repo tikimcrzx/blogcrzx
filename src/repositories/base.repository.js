@@ -3,8 +3,8 @@ class BaseRepository {
     this.model = model;
   }
 
-  async get(id) {
-    return await this.model.findById(id);
+  async get(id, populate = null) {
+    return await this.model.findById(id).populate(populate);
   }
 
   async getAll(pageSize = 5, pageNum = 1, populate = null) {

@@ -7,12 +7,15 @@ class BaseService {
     this.repository = repository;
   }
 
-  async get(id) {
+  async get(id, populate = null) {
     if (!id) {
       errorHandler(404, 'id must be send');
     }
 
-    const currentEntity = await this.repository.get(id);
+    const currentEntity = await this.repository.get(
+      id,
+      populate,
+    );
 
     if (!currentEntity) {
       errorHandler(404, 'Entitity does not found');

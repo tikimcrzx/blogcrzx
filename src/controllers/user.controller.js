@@ -7,7 +7,11 @@ class UserController {
 
   async get(req, res) {
     const { userId } = req.params;
-    const user = await _userService.get(userId);
+    const user = await _userService.get(userId, {
+      path: 'roles',
+      model: 'roles',
+      select: 'rol description',
+    });
     return res.send(user);
   }
 
