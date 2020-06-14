@@ -1,4 +1,6 @@
-const { errorHandler } = require('../helpers/error-handler.helper');
+const {
+  errorHandler,
+} = require('../helpers/error-handler.helper');
 
 class BaseService {
   constructor(repository) {

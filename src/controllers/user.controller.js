@@ -11,16 +11,22 @@ class UserController {
     return res.send(user);
   }
 
-  async getAll() {
+  async getAll(req, res) {
     const { pageSize, pageNum } = req.query;
-    const users = await _userService.getAll(pageSize, pageNum);
+    const users = await _userService.getAll(
+      pageSize,
+      pageNum,
+    );
     return res.send(users);
   }
 
   async update(req, res) {
     const { body } = req;
     const { userId } = req.params;
-    const updatedUser = await _userService.update(userId, body);
+    const updatedUser = await _userService.update(
+      userId,
+      body,
+    );
     return res.send(updatedUser);
   }
 

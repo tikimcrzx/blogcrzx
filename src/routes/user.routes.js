@@ -4,7 +4,7 @@ const { AuthMiddleware } = require('../middlewares');
 module.exports = function ({ UserController }) {
   const router = Router();
 
-  router.use(AuthMiddleware);
+  // router.use(AuthMiddleware);
 
   router.route('/').get(UserController.getAll);
 

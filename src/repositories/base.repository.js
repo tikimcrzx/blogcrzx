@@ -9,7 +9,10 @@ class BaseRepository {
 
   async getAll(pageSize = 5, pageNum = 1) {
     const skips = pageSize * (pageNum - 1);
-    return await this.model.find().skip(skips).limit(pageSize);
+    return await this.model
+      .find()
+      .skip(skips)
+      .limit(pageSize);
   }
 
   async create(entity) {
@@ -17,7 +20,9 @@ class BaseRepository {
   }
 
   async update(id, entity) {
-    return await this.model.findByIdAndUpdate(id, entity, { new: true });
+    return await this.model.findByIdAndUpdate(id, entity, {
+      new: true,
+    });
   }
 
   async delete(id) {

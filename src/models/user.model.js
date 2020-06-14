@@ -1,12 +1,25 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const { compareSync, hashSync, genSaltSync } = require('bcryptjs');
+const {
+  compareSync,
+  hashSync,
+  genSaltSync,
+} = require('bcryptjs');
 
 const UserSchema = new Schema(
   {
+    active: { type: Boolean, default: true },
     name: { type: String, required: true, maxlength: 50 },
-    lastName: { type: String, required: true, maxlength: 100 },
-    username: { type: String, required: true, maxlength: 30 },
+    lastName: {
+      type: String,
+      required: true,
+      maxlength: 100,
+    },
+    username: {
+      type: String,
+      required: true,
+      maxlength: 30,
+    },
     email: { type: String, required: true },
     password: { type: String, required: true },
     avatar: { type: String, maxlength: 50 },

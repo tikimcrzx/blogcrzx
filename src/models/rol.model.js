@@ -3,7 +3,12 @@ const { Schema } = mongoose;
 
 const RolSchema = new Schema(
   {
-    rol: { type: String, required: true, maxlength: 20 },
+    rol: {
+      type: String,
+      required: true,
+      maxlength: 20,
+      unique: true,
+    },
     description: { type: String, required: true },
   },
   { timestamps: true },

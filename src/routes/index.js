@@ -9,7 +9,11 @@ const {
 } = require('../middlewares');
 require('express-async-errors');
 
-module.exports = function ({ AuthRoutes, UserRoutes }) {
+module.exports = function ({
+  AuthRoutes,
+  UserRoutes,
+  RolRoutes,
+}) {
   const router = express.Router();
   const apiRoutes = express.Router();
 
@@ -20,8 +24,9 @@ module.exports = function ({ AuthRoutes, UserRoutes }) {
     .use(xssFilter())
     .use(compresion());
 
-  apiRoutes.use('/user', UserRoutes);
   apiRoutes.use('/auth', AuthRoutes);
+  apiRoutes.use('/rol', RolRoutes);
+  apiRoutes.use('/user', UserRoutes);
 
   router.use('/api/v1', apiRoutes);
 
