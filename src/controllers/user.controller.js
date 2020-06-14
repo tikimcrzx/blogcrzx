@@ -16,6 +16,11 @@ class UserController {
     const users = await _userService.getAll(
       pageSize,
       pageNum,
+      {
+        path: 'roles',
+        model: 'roles',
+        select: 'rol description',
+      },
     );
     return res.send(users);
   }

@@ -7,12 +7,13 @@ class BaseRepository {
     return await this.model.findById(id);
   }
 
-  async getAll(pageSize = 5, pageNum = 1) {
+  async getAll(pageSize = 5, pageNum = 1, populate = null) {
     const skips = pageSize * (pageNum - 1);
     return await this.model
       .find()
       .skip(skips)
-      .limit(pageSize);
+      .limit(pageSize)
+      .populate(populate);
   }
 
   async create(entity) {
