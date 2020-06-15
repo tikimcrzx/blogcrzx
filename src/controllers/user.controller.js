@@ -17,31 +17,24 @@ class UserController {
 
   async getAll(req, res) {
     const { pageSize, pageNum } = req.query;
-    const users = await _userService.getAll(
-      pageSize,
-      pageNum,
-      {
-        path: 'roles',
-        model: 'roles',
-        select: 'rol description',
-      },
-    );
+    const users = await _userService.getAll(pageSize, pageNum, {
+      path: 'roles',
+      model: 'roles',
+      select: 'rol description',
+    });
     return res.send(users);
   }
 
   async update(req, res) {
     const { body } = req;
     const { userId } = req.params;
-    const updatedUser = await _userService.update(
-      userId,
-      body,
-    );
+    const updatedUser = await _userService.update(userId, body);
     return res.send(updatedUser);
   }
 
   async delete(req, res) {
     const { userId } = req.params;
-    const deletedUser = _userService.delete(userId);
+    const deletedUser = await _userService.delete(userId);
     return res.send(deletedUser);
   }
 }

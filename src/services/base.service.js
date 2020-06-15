@@ -1,6 +1,4 @@
-const {
-  errorHandler,
-} = require('../helpers/error-handler.helper');
+const { errorHandler } = require('../helpers/error-handler.helper');
 
 class BaseService {
   constructor(repository) {
@@ -12,10 +10,7 @@ class BaseService {
       errorHandler(404, 'id must be send');
     }
 
-    const currentEntity = await this.repository.get(
-      id,
-      populate,
-    );
+    const currentEntity = await this.repository.get(id, populate);
 
     if (!currentEntity) {
       errorHandler(404, 'Entitity does not found');
@@ -25,11 +20,7 @@ class BaseService {
   }
 
   async getAll(pageSize, pageNum, populate = null) {
-    return await this.repository.getAll(
-      pageSize,
-      pageNum,
-      populate,
-    );
+    return await this.repository.getAll(pageSize, pageNum, populate);
   }
 
   async create(entity) {

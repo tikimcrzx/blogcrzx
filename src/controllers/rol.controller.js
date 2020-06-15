@@ -19,26 +19,20 @@ class RolController {
 
   async getAll(req, res) {
     const { pageSize, pageNum } = req.query;
-    const roles = await _rolService.getAll(
-      pageSize,
-      pageNum,
-    );
+    const roles = await _rolService.getAll(pageSize, pageNum);
     return res.send(roles);
   }
 
   async update(req, res) {
     const { body } = req;
     const { rolId } = req.params;
-    const updatedRol = await _rolService.update(
-      rolId,
-      body,
-    );
+    const updatedRol = await _rolService.update(rolId, body);
     return res.send(updatedRol);
   }
 
   async delete(req, res) {
     const { rolId } = req.params;
-    const deletedRol = _rolService.delete(rolId);
+    const deletedRol = await _rolService.delete(rolId);
     return res.send(deletedRol);
   }
 }

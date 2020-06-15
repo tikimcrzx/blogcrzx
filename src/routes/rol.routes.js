@@ -6,10 +6,7 @@ module.exports = function ({ RolController }) {
 
   // router.use(AuthMiddleware);
 
-  router
-    .route('/')
-    .post(RolController.create)
-    .get(RolController.getAll);
+  router.route('/').post(RolController.create).get(RolController.getAll);
 
   router
     .route('/:rolId')
