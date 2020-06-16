@@ -20,7 +20,11 @@ class AuthService {
 
   async signIn(user) {
     const { username, password } = user;
-    const userExist = await _userService.getUserByUsername(username);
+    const userExist = await _userService.getUserByUsername(username, {
+      path: 'roles',
+      models: 'roles',
+      select: 'rol',
+    });
 
     if (!userExist) {
       errorHandler(404, 'User does not exist');
@@ -35,6 +39,7 @@ class AuthService {
     const userToEncode = {
       id: userExist._id,
       username: userExist.username,
+      roles: userExist.roles,
     };
 
     const token = generateToken(userToEncode);

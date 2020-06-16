@@ -8,6 +8,8 @@ const app = require('.');
 const {
   AuthService,
   CategoryService,
+  CommentService,
+  PostService,
   RolService,
   UserService,
 } = require('../services');
@@ -16,6 +18,8 @@ const {
 const {
   AuthController,
   CategoryController,
+  CommentController,
+  PostController,
   RolController,
   UserController,
 } = require('../controllers');
@@ -24,6 +28,8 @@ const {
 const {
   AuthRoutes,
   CategoryRoutes,
+  CommentRoutes,
+  PostRoutes,
   RolRoutes,
   UserRoutes,
 } = require('../routes/index.routes');
@@ -36,6 +42,8 @@ const { Category, Comment, Post, Rol, User } = require('../models');
 const {
   RolRepository,
   CategoryRepository,
+  CommentRepository,
+  PostRepository,
   UserRepository,
 } = require('../repositories');
 
@@ -50,6 +58,8 @@ container
   .register({
     AuthService: asClass(AuthService).singleton(),
     CategoryService: asClass(CategoryService).singleton(),
+    CommentService: asClass(CommentService).singleton(),
+    PostService: asClass(PostService).singleton(),
     RolService: asClass(RolService).singleton(),
     UserService: asClass(UserService).singleton(),
   })
@@ -58,12 +68,18 @@ container
     CategoryController: asClass(
       CategoryController.bind(CategoryController),
     ).singleton(),
+    CommentController: asClass(
+      CommentController.bind(CommentController),
+    ).singleton(),
+    PostController: asClass(PostController.bind(PostController)).singleton(),
     RolController: asClass(RolController.bind(RolController)).singleton(),
     UserController: asClass(UserController.bind(UserController)).singleton(),
   })
   .register({
     AuthRoutes: asFunction(AuthRoutes).singleton(),
     CategoryRoutes: asFunction(CategoryRoutes).singleton(),
+    CommentRoutes: asFunction(CommentRoutes).singleton(),
+    PostRoutes: asFunction(PostRoutes).singleton(),
     RolRoutes: asFunction(RolRoutes).singleton(),
     UserRoutes: asFunction(UserRoutes).singleton(),
   })
@@ -76,6 +92,8 @@ container
   })
   .register({
     CategoryRepository: asClass(CategoryRepository).singleton(),
+    PostRepository: asClass(PostRepository).singleton(),
+    CommentRepository: asClass(CommentRepository).singleton(),
     RolRepository: asClass(RolRepository).singleton(),
     UserRepository: asClass(UserRepository).singleton(),
   });

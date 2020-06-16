@@ -4,8 +4,6 @@ const { AuthMiddleware } = require('../middlewares');
 module.exports = function ({ RolController }) {
   const router = Router();
 
-  // router.use(AuthMiddleware);
-
   router.route('/').post(RolController.create).get(RolController.getAll);
 
   router

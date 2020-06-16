@@ -1,4 +1,9 @@
 let _userService = null;
+const populate = {
+  path: 'roles',
+  model: 'roles',
+  select: 'rol description',
+};
 
 class UserController {
   constructor({ UserService }) {
@@ -7,21 +12,13 @@ class UserController {
 
   async get(req, res) {
     const { userId } = req.params;
-    const user = await _userService.get(userId, {
-      path: 'roles',
-      model: 'roles',
-      select: 'rol description',
-    });
+    const user = await _userService.get(userId, populate);
     return res.send(user);
   }
 
   async getAll(req, res) {
     const { pageSize, pageNum } = req.query;
-    const users = await _userService.getAll(pageSize, pageNum, {
-      path: 'roles',
-      model: 'roles',
-      select: 'rol description',
-    });
+    const users = await _userService.getAll(pageSize, pageNum, populate);
     return res.send(users);
   }
 

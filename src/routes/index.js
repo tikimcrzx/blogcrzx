@@ -8,9 +8,11 @@ require('express-async-errors');
 
 module.exports = function ({
   AuthRoutes,
-  UserRoutes,
-  RolRoutes,
   CategoryRoutes,
+  CommentRoutes,
+  PostRoutes,
+  RolRoutes,
+  UserRoutes,
 }) {
   const router = express.Router();
   const apiRoutes = express.Router();
@@ -24,6 +26,8 @@ module.exports = function ({
 
   apiRoutes.use('/auth', AuthRoutes);
   apiRoutes.use('/category', CategoryRoutes);
+  apiRoutes.use('/comment', CommentRoutes);
+  apiRoutes.use('/post', PostRoutes);
   apiRoutes.use('/rol', RolRoutes);
   apiRoutes.use('/user', UserRoutes);
 
